@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html >
+<head>
+<!-- Etiquetas metas -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<meta name="viewport" content="width=device-width">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<link rel="stylesheet" type="text/css" href="../libraries/bootstrap/css/bootstrap.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../app.js"></script>
+</head>
+
+<body data-ng-app="myApp">
+	<div data-ng-controller="PrincipalController">
+		<nav class="navbar navbar-default" role="navigation">
+  <!-- El logotipo y el icono que despliega el menú se agrupan
+       para mostrarlos mejor en los dispositivos móviles -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse"
+            data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Desplegar navegación</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand"><p class="text-primary">Ferreteria Mikasa</p></a>
+    <a class="navbar-brand"><span class="text-primary">Bienvenido {{dataUsuario.nombre}} {{dataUsuario.apellido_paterno}}</span></a>
+  </div>
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      
+      
+      
+     <li class="dropdown" data-ng-if="dataUsuario.TIPO_USUARIO_id==1">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          Administracion <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li ><a href="#/Producto">Producto</a></li>
+            <li><a href="#/Usuarios">Usuarios</a></li>
+            <li><a href="#/Categoria">Categoria</a></li>
+            <li><a href="#/BuscarVenta">Buscar Ventas</a></li>
+          </ul>
+        </li>
+        <li class="dropdown" >
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          Venta <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#/Venta">Venta</a></li>
+            <li><a href="#/Cuadratura">Cuadratura</a></li>   
+          </ul>
+        </li>
+        <li><a data-ng-click="cerrarSesion()" href="#">Cerrar sesion</a></li>
+    </ul>
+  </div>
+</nav>
+  <div ng-view>
+    
+  </div>
+  </div>
+	</div>
+</body>
+
+</html>
+
+
+
+

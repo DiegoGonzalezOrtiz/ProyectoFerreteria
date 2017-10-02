@@ -1,0 +1,81 @@
+<form name="formProducto" class="form-horizontal" ng-submit="formProducto.$valid" novalidate>
+   <div ng-controller="ProductoController">
+   <div class="container-fluid">
+       <div class="col-md-2 col-sm-2">       
+          <div ng-include="'/MundoCredito/static/js/views/datos/form_lateral.html'"></div>
+       </div>
+   
+       <div class="col-md-10 col-sm-10">
+   
+
+      <h5 class="titles-site">Productos</h5>
+                  <div class="form-group">
+                    <div class="col-md-2 col-sm-2">
+                     <p>Tipo Producto</p>
+                     </div>
+                     <div class="col-md-2 col-sm-2">
+                        <select  class="form-control" ng-class="bordertipoProducto" ng-model="opc.fotipoProducto" name="fotipoProducto" required>
+                           <option value =""> - Seleccionar - </option>
+                           <option value ="C">Celular</option>
+                           <option value ="P">Particular principal</option>
+                           <option value ="S">Particular secundario</option>
+                           <option value ="E">Comercial</option>
+                           <option value ="U">Comercial secundario</option>
+                           <option value ="O">Otro</option>                        
+                        </select>
+                     </div>
+                     <div class="col-md-2 col-sm-2">
+                        <p>Producto</p>
+                     </div>
+                       <div class="col-md-2 col-sm-2">
+                     <input  onkeypress="return tabular(event,this)"  type ="text" class="form-control" id="foProducto"  maxlength="64"  ng-model="opc.foProducto" name="foProducto" allow-pattern="\d|\+|\-|[\x00-\x1F]">
+                  </div>
+                    <div ng-controller="ModalCtrl" class="row">
+                           <div class="col-md-2 col-sm-2"  ng-if="showGrabar()">
+                              <button type="submit" class="btn btn-success" ng-click="(formProducto.fotipoProducto.$error.required ) ? opc.mensajeDatosInsuficientes() :  opc.saveoperacionteleProducto()">Grabar</button>
+                    
+                           </div>
+                        </div>  
+                  </div>
+
+      
+            <div class="panel panel-default" >
+      <h5 class="titles-site">Resumen Productos</h5>
+      <div class="container-fluid">
+                 <div class="form-group">
+         <div class="container-fluid table-responsive" ">
+            <div ng-controller="ModalCtrl">
+               <table datatable="ng" dt-options="showCase.dtOptions"
+                  class="table table-striped table-bordered row-border hover">
+                  <thead>
+                     <tr>
+                        <th><h6 class="text-primary">Tipo</h6></th>
+                        <th><h6 class="text-primary">Producto</h6></th>
+                        <th ng-if="showGrabar()"><h6 class="text-primary">Eliminar</h6></th>
+                        <th ng-if="showGrabar()"><h6 class="text-primary">Modificar</h6></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr ng-repeat="item in opc.tabla">
+                        <td><h6>{{ opc.convertGlosaTeleProducto(item.a_tipoteleProducto) }}</h6></td>
+                        <td><h6>{{ item.a_teleProducto }}</h6></td>	
+                        <td ng-if="showGrabar()"><button type="submit" class="btn btn-primary" ng-click="opc.deleteoperacionteleProducto(item.c_id)" >Eliminar</button></td>
+                        <td ng-if="showGrabar()"><button type="submit" class="btn btn-primary" ng-click="opc.modifyProducto(item)" >Modificar</button></td>
+                           
+                     
+                     </tr>
+                  </tbody>
+               </table>	
+   
+            </div>
+         </div>
+            
+                 </div>
+      </div>
+   </div>
+   
+      </div>
+   
+   </div>
+   </div>
+</form>

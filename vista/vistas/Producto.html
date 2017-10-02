@@ -1,0 +1,117 @@
+<form name="formProducto" class="form-horizontal" ng-submit="formProducto.$valid" novalidate>
+   <div data-ng-controller="ProductoController">
+      <div class="container-fluid">
+         <div class="col-md-2 col-sm-2">       
+         </div>
+         <div class="col-md-10 col-sm-10">
+            <p style="font-weight: bold;"> Productos</p>
+            <br>
+            <div class="form-group">
+               <div class="col-md-1 col-sm-1">
+                  <p>Categoria</p>
+               </div>
+               <div class="col-md-2 col-sm-2">
+		<select required data-ng-options="item as item.descripcion for item in CategoriasProductos" class="form-control" data-ng-class="borderCategoria" data-ng-model="categoria" name="Categoria">
+			<option value="">- Seleccionar -</option>
+		</select>
+               </div>
+               <div class="col-md-1 col-sm-1">
+                  <p>Nombre</p>
+               </div>
+               <div class="col-md-2 col-sm-2">
+                  <input type ="text" class="form-control" id="Nombre"  maxlength="45"  data-ng-model="nombre" name="Nombre" required>
+               </div>
+               <div class="col-md-1 col-sm-1">
+                  <p>Precio</p>
+               </div>
+               <div class="col-md-2 col-sm-2">
+                  <input type ="text" class="form-control" id="Precio"  maxlength="45" format="number" data-ng-model="precio" name="Precio"  required>
+               </div>
+            </div>
+            <div class="form-group">
+               <div class="col-md-1 col-sm-1">
+                  <p>Stock</p>
+               </div>
+               <div class="col-md-2 col-sm-2">
+                  <input type ="text" class="form-control" id="Stock"  maxlength="11" format="number" data-ng-model="Stock" name="Stock" required>
+               </div>
+               <div class="col-md-1 col-sm-1">
+                  <p>Descripcion</p>
+               </div>
+               <div class="col-md-2 col-sm-2">
+                  <input type ="text" class="form-control" id="Descripcion"  maxlength="45"  data-ng-model="descripcion" name="Descripcion">
+               </div>
+              
+            </div>
+            <div class="form-group">
+            <div class="col-md-2 col-sm-2" >
+                  <button type="submit" class="btn btn-success" data-ng-click="(formProducto.$valid)? CreateProducto() : mensajeDatosInsuficientes()">Grabar</button>
+               </div>
+            </div>
+            <div class="panel panel-default col-md-10 col-sm-10" >
+               <h5 style="font-weight: bold;">Resumen Productos</h5>
+               <div class="container-fluid">
+                  <div class="form-group">
+                     <div class="container-fluid table-responsive" ">
+                        <table dt-options="showCase.dtOptions"
+                           class="table table-striped table-bordered row-border hover">
+                           <thead>
+                              <tr>
+                                 <th>
+                                    <h6 class="text-primary">Id</h6>
+                                 </th>
+				<th>
+                                    <h6 class="text-primary">Nombre</h6>
+                                 </th>
+		             		<th>
+                                    <h6 class="text-primary">Categoria</h6>
+                                 </th>
+                                 <th>
+                                    <h6 class="text-primary">Precio</h6>
+                                 </th>
+                                 <th>
+                                    <h6 class="text-primary">Stock</h6>
+                                 </th>
+				<th>
+                                    <h6 class="text-primary">Descripcion</h6>
+                                 </th>
+                                 <th>
+                                    <h6 class="text-primary">Eliminar</h6>
+                                 </th>
+                                 <th>
+                                    <h6 class="text-primary">Modificar</h6>
+                                 </th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr ng-repeat="item in tabla">
+                                 <td>
+                                    <h6>{{ item.id }}</h6>
+                                 </td>
+				<td>
+                                    <h6>{{ item.nombre }}</h6>
+                                 </td><td>
+                                    <h6>{{ traducirCategoria(item.CATEGORIA_PRODUCTO_id) }}</h6>
+                                 </td>
+				<td>
+                                    <h6>{{ item.precio }}</h6>
+                                 </td>
+				<td>
+                                    <h6>{{ item.stock }}</h6>
+                                 </td>
+				<td>
+                                    <h6>{{ item.descripcion }}</h6>
+                                 </td>
+                                 <td ><button type="submit" class="btn btn-primary" data-ng-click="DeleteProductoById(item.id)">Eliminar</button></td>
+                                 <td ><button type="submit" class="btn btn-primary" data-ng-click="modifyProducto(item)" >Modificar</button></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</form>
